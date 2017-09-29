@@ -50,7 +50,7 @@ module Simp::BeakerHelpers
   def puppet_modulepath_on(sut, environment='production')
     on(
       sut, "puppet config print modulepath --environment #{environment}"
-    ).output.lines.last.strip.split(':')
+    ).output.lines.last.strip.split(':').split(';')
   end
 
   # Return the path to the 'spec/fixtures' directory
@@ -145,7 +145,8 @@ module Simp::BeakerHelpers
           # `target_module_path`.  This workaround queries each SUT's
           # `modulepath` and targets the first one.
           target_module_path = puppet_modulepath_on(sut).first
-
+	  require 'pry'
+	  binding.pry
           environment_root = File.expand_path( "spec/fixtures/modules", File.dirname( fixtures_yml_path ))
 
           Dir.chdir(environment_root) do
