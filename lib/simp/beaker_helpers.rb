@@ -149,8 +149,8 @@ module Simp::BeakerHelpers
           # cannot rely on `copy_module_to()` to choose a sane default for
           # `target_module_path`.  This workaround queries each SUT's
           # `modulepath` and targets the first one.
-	  require 'pry'
-	  binding.pry
+          require 'pry'
+          binding.pry
           target_module_path = puppet_modulepath_on(sut).first
           environment_root = File.expand_path( "spec/fixtures/modules", File.dirname( fixtures_yml_path ))
 
