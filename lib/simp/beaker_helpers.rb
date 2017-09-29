@@ -156,11 +156,11 @@ module Simp::BeakerHelpers
 
           Dir.chdir(environment_root) do
             begin
-		    Dir.entries(environment_root).each do |mod|
-			unless (mod =~ /\./)
-	              		copy_to(sut, mod, target_module_path, opts)
-			end
-		    end
+              Dir.entries(environment_root).each do |mod|
+                unless (mod =~ /\./)
+                  copy_to(sut, mod, target_module_path, opts)
+                end
+              end
             end
           end
         end
@@ -623,3 +623,5 @@ done
     run_puppet_install_helper(puppet_install_type,  puppet_agent_version)
   end
 end
+
+# vim: set expandtab ts=2 sw=2:
