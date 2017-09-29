@@ -137,7 +137,7 @@ module Simp::BeakerHelpers
     ensure_fixture_modules
 
     opts[:pluginsync] = opts.fetch(:pluginsync, true)
-
+    opts = { :ignore => PUPPET_MODULE_INSTALL_IGNORE}.merge(opts)
     unless ENV['BEAKER_copy_fixtures'] == 'no'
       Array(suts).each do |sut|
         STDERR.puts "  ** copy_fixture_modules_to: '#{sut}'" if ENV['BEAKER_helpers_verbose']
