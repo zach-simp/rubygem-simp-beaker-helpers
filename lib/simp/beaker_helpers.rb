@@ -15,11 +15,11 @@ module Simp::BeakerHelpers
   #
   # Will create the directories leading up to the target if they don't exist
   def copy_to(sut, src, dest, opts={})
-    unless @has_rsync
-      %x{which rsync 2>/dev/null}.strip
+#    unless @has_rsync
+#      %x{which rsync 2>/dev/null}.strip
 
-      @has_rsync = $?.success?
-    end
+#      @has_rsync = $?.success?
+#    end
 
     sut.mkdir_p(File.dirname(dest))
 
