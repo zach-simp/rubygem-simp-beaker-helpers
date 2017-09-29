@@ -146,21 +146,13 @@ module Simp::BeakerHelpers
           # `modulepath` and targets the first one.
           target_module_path = puppet_modulepath_on(sut).first
 
-          mod_root = File.expand_path( "spec/fixtures/modules", File.dirname( fixtures_yml_path ))
+          environment_root = File.expand_path( "spec/fixtures/modules", File.dirname( fixtures_yml_path ))
 
-          Dir.chdir(mod_root) do
+          Dir.chdir(environment_root) do
             begin
-              tarfile = Dir::Tmpname.make_tmpname(['beaker','.tar'],nil)
-
-              excludes = PUPPET_MODULE_INSTALL_IGNORE.map do |x|
-                x = "--exclude '*/#{x}'"
-              end.join(' ')
-
-              %x(tar -ch #{excludes} -f #{tarfile} *)
-
-              copy_to(sut, tarfile, target_module_path, opts)
-
-              on(sut, "cd #{target_module_path} && tar -xf #{File.basename(tarfile)}")
+		Dir.entries(environment_root) do |mod|
+              		copy_to(sut, mod, target_module_path, opts)
+		end
             ensure
               FileUtils.remove_entry(tarfile, true)
             end
