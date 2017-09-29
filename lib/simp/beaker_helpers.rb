@@ -51,7 +51,7 @@ module Simp::BeakerHelpers
     result = on(
       sut, "puppet config print modulepath --environment #{environment}"
     ).output.lines.last.strip
-    if (result == /;/)
+    if (result =~ /;/)
 	    result.split(";")
     else
 	    result.split(":")
