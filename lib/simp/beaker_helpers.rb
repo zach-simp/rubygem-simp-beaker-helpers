@@ -153,8 +153,6 @@ module Simp::BeakerHelpers
 		Dir.entries(environment_root) do |mod|
               		copy_to(sut, mod, target_module_path, opts)
 		end
-            ensure
-              FileUtils.remove_entry(tarfile, true)
             end
           end
         end
