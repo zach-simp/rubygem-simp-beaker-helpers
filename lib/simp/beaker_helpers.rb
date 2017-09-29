@@ -50,7 +50,7 @@ module Simp::BeakerHelpers
   def puppet_modulepath_on(sut, environment='production')
     on(
       sut, "puppet config print modulepath --environment #{environment}"
-    ).output.lines.last.strip.split(':').split(';')
+    ).output.lines.last.strip.split(':')[0].split(';')
   end
 
   # Return the path to the 'spec/fixtures' directory
