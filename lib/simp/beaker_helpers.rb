@@ -573,7 +573,7 @@ done
   # pluginsync custom facts for all modules
   def pluginsync_on( suts = hosts )
     puts "== pluginsync_on'" if ENV['BEAKER_helpers_verbose']
-    suts.each do |sut|
+    Array(suts).each do |sut|
       puts "  ** pluginsync_on: '#{sut}'" if ENV['BEAKER_helpers_verbose']
       fact_path = on(sut, %q(puppet config print factpath)).output.strip.split(':').first
       on(sut, %q(puppet config print modulepath)).output.strip.split(':').each do |mod_path|
